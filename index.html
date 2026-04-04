@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reminders</title>
+    <meta name="theme-color" content="#0d1117">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="greeting-area">
+                <h1 id="greeting">Good Day</h1>
+                <p id="date-display" class="subtitle">Fetching date...</p>
+            </div>
+            <button id="add-task-btn" class="glass-btn primary-btn">+ New</button>
+        </header>
+
+        <!-- Notification Banner -->
+        <div id="notification-banner" class="notification-banner hidden">
+            <p>Notifications are disabled. Enable them to get reminders.</p>
+            <button id="enable-notifs-btn">Enable</button>
+        </div>
+
+        <!-- Task Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="upcoming">Upcoming</button>
+            <button class="tab" data-tab="completed">Completed</button>
+        </div>
+
+        <!-- Task List Container -->
+        <main class="task-list-container">
+            <div id="upcoming-list" class="task-list active-list">
+                <!-- Upcoming Tasks render here -->
+            </div>
+            
+            <div id="completed-list" class="task-list hidden-list">
+                <!-- Completed Tasks render here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="task-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>New Reminder</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="task-form">
+                <div class="form-group">
+                    <label for="task-title">What do you want to remember?</label>
+                    <input type="text" id="task-title" placeholder="e.g. Call mom" required autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <label for="task-desc">Description (optional)</label>
+                    <textarea id="task-desc" placeholder="Details..." rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>When?</label>
+                    <div class="date-pills">
+                        <button type="button" class="pill active" data-date="today">Today</button>
+                        <button type="button" class="pill" data-date="tomorrow">Tomorrow</button>
+                        <button type="button" class="pill" data-date="pick">Pick Date</button>
+                    </div>
+                    <!-- Hidden date picker, shown if Pick Date is selected -->
+                    <input type="date" id="custom-date" class="hidden-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="task-time">Time</label>
+                    <input type="time" id="task-time" required>
+                    <p id="time-warning" class="warning-text hidden">This time has already passed today!</p>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="submit-btn">Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
